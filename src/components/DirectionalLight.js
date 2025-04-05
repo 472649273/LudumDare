@@ -15,7 +15,7 @@ export function DirectionalLight() {
   dirLight.shadow.camera.top = 400;
   dirLight.shadow.camera.bottom = -400;
   dirLight.shadow.camera.near = 50;
-  dirLight.shadow.camera.far = 400;
+  dirLight.shadow.camera.far = 900;
 
   return dirLight;
 }

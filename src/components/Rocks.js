@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { tileSize } from "../constants";
 
-export function Rock(tileIndex, height) {
+export function Rock(tileIndex) {
   const rock = new THREE.Group();
   rock.position.x = tileIndex * tileSize;
 

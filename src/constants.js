@@ -1,5 +1,6 @@
-export const maxRowIndex = 10;
-export const minTileIndex = -5;
-export const maxTileIndex = 5;
+export const maxRowIndex = 20;
+export const minTileIndex = -10;
+export const maxTileIndex = 10;
 export const tilesPerRow = maxTileIndex - minTileIndex + 1;
 export const tileSize = 42;
+export const maxLayerDepth = 11;

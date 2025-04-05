@@ -36,3 +36,16 @@ body {
 #controls button:first-of-type {
   grid-column: 1/-1;
 }
+
+#controls button:last-of-type {
+  grid-column: 1/-1;
+}
+
+#depth {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  font-size: 2em;
+  color: black;
+}

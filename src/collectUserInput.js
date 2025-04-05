@@ -16,6 +16,10 @@ document
   .getElementById("right")
   ?.addEventListener("click", () => queueMove("right"));
 
+document
+  .getElementById("dive")
+  ?.addEventListener("click", () => queueMove("dive"));
+
 window.addEventListener("keydown", (event) => {
   if (event.key === "ArrowUp") {
     event.preventDefault(); // Avoid scrolling the page
@@ -29,5 +33,8 @@ window.addEventListener("keydown", (event) => {
   } else if (event.key === "ArrowRight") {
     event.preventDefault(); // Avoid scrolling the page
     queueMove("right");
+  } else if (event.key === "d") {
+    event.preventDefault(); // Avoid scrolling the page
+    queueMove("dive");
   }
 });

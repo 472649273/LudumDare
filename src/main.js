@@ -25,7 +25,7 @@ player.add(camera);
 initializeGame();
 
 function initializeGame() {
-  initializeMap();
+  initializeMap(0);
 }
 
 const renderer = Renderer();

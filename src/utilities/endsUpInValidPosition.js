@@ -1,5 +1,10 @@
 import { calculateFinalPosition } from "./calculateFinalPosition";
-import { minTileIndex, maxTileIndex, maxRowIndex } from "../constants";
+import {
+  minTileIndex,
+  maxTileIndex,
+  maxRowIndex,
+  maxLayerDepth,
+} from "../constants";
 import { metadata as rows } from "../components/Map";
 
 export function endsUpInValidPosition(currentPosition, moves) {
@@ -9,7 +14,7 @@ export function endsUpInValidPosition(currentPosition, moves) {
   // Detect if we hit the edge of the board
   if (
     finalPosition.rowIndex === -1 ||
-    finalPosition.rowIndex === maxRowIndex + 3 ||
+    finalPosition.rowIndex === maxRowIndex + 1 ||
     finalPosition.tileIndex === minTileIndex - 1 ||
     finalPosition.tileIndex === maxTileIndex + 1
   ) {
@@ -18,13 +23,17 @@ export function endsUpInValidPosition(currentPosition, moves) {
   }
 
   // Detect if we hit a rock
-  const finalRow = rows[finalPosition.rowIndex - 1];
+  const finalRow = rows[finalPosition.rowIndex];
   if (
     finalRow &&
-    finalRow.type === "forest" &&
     finalRow.rocks.some((rock) => rock.tileIndex === finalPosition.tileIndex)
   ) {
     // Invalid move, ignore move command
+    return false;
+  }
+
+  //Detect if we are at max depth
+  if (finalPosition.z === maxLayerDepth) {
     return false;
   }
 

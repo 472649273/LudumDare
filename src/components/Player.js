@@ -1,5 +1,7 @@
 import * as THREE from "three";
 import { endsUpInValidPosition } from "../utilities/endsUpInValidPosition";
+import { maxLayerDepth } from "../constants";
+import { initializeMap } from "./Map";
 
 export const player = Player();
 
@@ -27,6 +29,7 @@ function Player() {
 export const position = {
   currentRow: 0,
   currentTile: 0,
+  depth: 0,
 };
 
 export const movesQueue = [];
@@ -36,6 +39,7 @@ export function queueMove(direction) {
     {
       rowIndex: position.currentRow,
       tileIndex: position.currentTile,
+      z: position.depth,
     },
     [...movesQueue, direction]
   );
@@ -52,4 +56,12 @@ export function stepCompleted() {
   if (direction === "backward") position.currentRow -= 1;
   if (direction === "left") position.currentTile -= 1;
   if (direction === "right") position.currentTile += 1;
+  if (direction === "dive") {
+    position.depth += 1;
+    initializeMap(position.depth);
+    movesQueue.unshift("dive2");
+  }
+
+  const depthDOM = document.getElementById("depthValue");
+  if (depthDOM) depthDOM.innerText = (position.depth * 100).toString();
 }
